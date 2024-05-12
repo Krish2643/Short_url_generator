@@ -33,7 +33,7 @@ const Home = () => {
 
    const handleCopyUrl = ()=>{
         alert("URL has been Copied");
-        navigator.clipboard.writeText(`http://localhost:8000/${short_url}`);
+        navigator.clipboard.writeText(`https://srt-url.onrender.com/${short_url}`);
    }
 
    const handleFindIP = (e)=>{
