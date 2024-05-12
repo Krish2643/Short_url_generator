@@ -11,6 +11,7 @@ app.use(express.json());
 app.set('trust proxy', true);
 app.use(cors())
 app.use('/', urlRoutes);
+app.use(express.urlencoded({extended: false}));
 
 const PORT = process.env.PORT || 8000;
 
@@ -35,9 +36,27 @@ function findIPAddress(link) {
     });
   }
 
-  app.get('/check', (req, res)=>{
+app.get('/check', (req, res)=>{
      res.send("backend is live and working fine");
-  })
+})
+
+app.get('/eg', (req, res)=>{
+   res.redirect("https://google.com")
+})
+
+app.get('/:shortId', async(req, res)=>{
+     const shortId = req.params.shortId;
+    //  const user = await URL.find({shortId});
+      const entry = await URL.findOne({shortId});
+      if(!entry){
+        // console.log(entry.redirectURL);
+        // res.redirect(entry.redirectURL);
+        res.send("entry does not exist");
+      } 
+      
+     console.log("this is entry",entry.redirectURL);
+     res.redirect(entry.redirectURL);  
+})
 
 app.get('/url/:shortId', async (req, res)=>{
     const shortId = req.params.shortId;
