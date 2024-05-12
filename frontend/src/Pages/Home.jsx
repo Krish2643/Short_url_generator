@@ -19,7 +19,7 @@ const Home = () => {
          return alert('To generate Short URL, URL Should be in "https://example.com" format ');
         }
 
-       fetch(`http://localhost:8000/`, {
+       fetch(`https://srt-url.onrender.com/`, {
         method: "POST",
         body: JSON.stringify({
             url: Org_url,
@@ -45,7 +45,7 @@ const Home = () => {
       return alert('To find IP address, URL should be in "www.example.com" format ');
      }
 
-     fetch(`http://localhost:8000/url/${Org_url}`).then(res => res.json()).then(data=> setIPv6(data.ipAddress)).catch(err=> console.log("this is error",err));
+     fetch(`https://srt-url.onrender.com/url/${Org_url}`).then(res => res.json()).then(data=> setIPv6(data.ipAddress)).catch(err=> console.log("this is error",err));
    }
 
   return (
